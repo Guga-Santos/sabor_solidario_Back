@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.hashers import make_password, check_password
 from uuid import uuid4
-# Create your models here.
+# Create your models here..
 
 class Endereco(models.Model):
     rua = models.CharField(max_length=255)
