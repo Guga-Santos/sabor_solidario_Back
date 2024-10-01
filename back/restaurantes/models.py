@@ -20,7 +20,7 @@ class Restaurantes(models.Model):
     id_restaurante = models.UUIDField(primary_key=True, default=uuid4, editable=False)
     nome = models.CharField(max_length=255)
     nome_fantasia = models.CharField(max_length=255)
-    CNJP = models.CharField(max_length=14)
+    CNPJ = models.CharField(max_length=14)
     telefone = models.CharField(max_length=11)
     endereco = models.OneToOneField(Endereco, on_delete=models.CASCADE)
     email = models.EmailField()
