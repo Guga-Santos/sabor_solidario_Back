@@ -20,11 +20,13 @@ from django.urls import path, include
 from rest_framework import routers
 from restaurantes.api import viewsets as restaurantes
 from voluntarios.api import viewsets as voluntarios
+from campanha.api import viewsets as campanhas
 
 route = routers.DefaultRouter()
 
 route.register('restaurantes', restaurantes.RestauranteViewSet, basename='Restaurantes')
 route.register('voluntarios', voluntarios.VoluntariosViewSet, basename='Voluntarios')
+route.register('campanha', campanhas.CampanhaViewSet, basename='Campanhas')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
