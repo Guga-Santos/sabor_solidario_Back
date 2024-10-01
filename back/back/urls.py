@@ -19,10 +19,12 @@ from django.urls import path, include
 
 from rest_framework import routers
 from restaurantes.api import viewsets as restaurantes
+from voluntarios.api import viewsets as voluntarios
 
 route = routers.DefaultRouter()
 
 route.register('restaurantes', restaurantes.RestauranteViewSet, basename='Restaurantes')
+route.register('voluntarios', voluntarios.VoluntariosViewSet, basename='Voluntarios')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
