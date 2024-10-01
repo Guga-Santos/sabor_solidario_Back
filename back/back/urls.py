@@ -23,7 +23,7 @@ from voluntarios.api import viewsets as voluntarios
 from campanha.api import viewsets as campanhas
 from transacao.api import viewsets as transacoes
 
-from restaurantes.views import List, Find_By_Id
+from restaurantes.views import List, Find_By_Id, Create
 
 route = routers.DefaultRouter()
 
@@ -36,5 +36,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('restaurantes/list/<str:pk>', Find_By_Id),
     path('restaurantes/list/', List),
+    path('restaurantes/create/', Create),
     path('', include(route.urls)),
 ]
