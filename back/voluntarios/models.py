@@ -17,7 +17,7 @@ class Endereco(models.Model):
 
 
 class Voluntarios(models.Model):
-    id_restaurante = models.UUIDField(primary_key=True, default=uuid4, editable=False)
+    id_voluntario = models.UUIDField(primary_key=True, default=uuid4, editable=False)
     nome = models.CharField(max_length=255)
     CPF = models.CharField(max_length=11)
     telefone = models.CharField(max_length=11)
