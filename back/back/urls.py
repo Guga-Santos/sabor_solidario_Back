@@ -22,20 +22,26 @@ from voluntarios.api import viewsets as voluntarios
 from campanha.api import viewsets as campanhas
 from transacao.api import viewsets as transacoes
 
-from restaurantes.views import Overview, List, Find_By_Id, Create, Update, Delete
+from restaurantes import views as restaurante
+from voluntarios import views as voluntario
 
 route = routers.DefaultRouter()
-route.register('voluntarios', voluntarios.VoluntariosViewSet, basename='Voluntarios')
 route.register('campanhas', campanhas.CampanhaViewSet, basename='Campanhas')
 route.register('transacoes', transacoes.TransacaoViewSet, basename='Transacoes')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('restaurantes/', Overview),
-    path('restaurantes/list/<str:pk>', Find_By_Id),
-    path('restaurantes/list/', List),
-    path('restaurantes/create/', Create),
-    path('restaurantes/update/<str:pk>', Update),
-    path('restaurantes/delete/<str:pk>', Delete),
+    path('restaurantes/', restaurante.Overview),
+    path('restaurantes/list/<str:pk>', restaurante.Find_By_Id),
+    path('restaurantes/list/', restaurante.List),
+    path('restaurantes/create/', restaurante.Create),
+    path('restaurantes/update/<str:pk>', restaurante.Update),
+    path('restaurantes/delete/<str:pk>', restaurante.Delete),
+    path('voluntarios/', voluntario.Overview),
+    path('voluntarios/list/<str:pk>', voluntario.Find_By_Id),
+    path('voluntarios/list/', voluntario.List),
+    path('voluntarios/create/', voluntario.Create),
+    path('voluntarios/update/<str:pk>', voluntario.Update),
+    path('voluntarios/delete/<str:pk>', voluntario.Delete),
     path('', include(route.urls)),
 ]
