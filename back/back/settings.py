@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'restaurantes',
     'voluntarios',
-    'campanha'
+    'campanha',
+    'transacao'
 ]
 
 MIDDLEWARE = [
