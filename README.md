@@ -64,19 +64,64 @@ python manage.py runserver
 ```bash
 /home/caminho/ate/sua/pasta
     ├── manage.py
+    ├── README.md
+    ├── requirements.txt
     ├── back/
     │   ├── __init__.py
     │   ├── settings.py
     │   ├── urls.py
     │   ├── wsgi.py
     │   └── asgi.py
-    └── restaurantes/
-        ├── __init__.py
-        ├── admin.py
-        ├── apps.py
-        ├── models.py
-        ├── views.py
-        └── ...
+    ├── campanha/
+    │   └── __pycache__/
+    │   └── api/
+    │       ├── serializers.py
+    │       └── viewsets.py
+    │   ├── migrations/
+    │   ├── __init__.py
+    │   ├── admin.py
+    │   ├── apps.py
+    │   ├── models.py
+    │   ├── tests.py
+    │   └── views.py    
+    ├── restaurantes/
+    │   └── __pycache__/
+    │   └── api/
+    │       ├── serializers.py
+    │       └── viewsets.py
+    │   ├── migrations/
+    │   ├── __init__.py
+    │   ├── admin.py
+    │   ├── apps.py
+    │   ├── models.py
+    │   ├── tests.py
+    │   └── views.py
+    ├── transacao/
+    │   └── __pycache__/
+    │   └── api/
+    │       ├── serializers.py
+    │       └── viewsets.py
+    │   ├── migrations/
+    │   ├── __init__.py
+    │   ├── admin.py
+    │   ├── apps.py
+    │   ├── models.py
+    │   ├── tests.py
+    │   └── views.py
+    ├── voluntarios/
+    │   └── __pycache__/
+    │   └── api/
+    │       ├── serializers.py
+    │       └── viewsets.py
+    │   ├── migrations/
+    │   ├── __init__.py
+    │   ├── admin.py
+    │   ├── apps.py
+    │   ├── models.py
+    │   ├── tests.py
+    │   └── views.py
+        
+
 ```
 
 
