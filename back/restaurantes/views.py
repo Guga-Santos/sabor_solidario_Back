@@ -35,4 +35,19 @@ def Create(request):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['POST'])
+def Update(request, pk):
+    try:
+        restaurante = Restaurantes.objects.get(id_restaurante=pk)
+    except Restaurantes.DoesNotExist:
+        return Response({'error': 'Restaurante não encontrado'}, status=status.HTTP_404_NOT_FOUND)
+    
+    serializer = RestaurantesSerializers(instance= restaurante, data=request.data, partial=True)
+    if serializer.is_valid():
+        serializer.save()
+        return Response({'message': 'Atualizado com Sucesso!'}, status=status.HTTP_200_OK)  # Código de resposta 200 para sucesso
+    
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
             
