@@ -8,6 +8,17 @@ from restaurantes.models import Restaurantes
 from restaurantes.api.serializers import RestaurantesSerializers
 
 # Create your views here.
+@api_view(['GET'])
+def Overview(request):
+    urls = {
+        'Find_By_Id':'restaurantes/list/<str:pk>',
+        'List':'restaurantes/list/',
+        'Create':'restaurantes/create/',
+        'Update':'restaurantes/update/<str:pk>',
+        'Delete':'restaurantes/delete/<str:pk>'
+    }
+
+    return Response(urls)
 
 @api_view(['GET'])
 def List(request):
@@ -36,7 +47,7 @@ def Create(request):
     
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-@api_view(['POST'])
+@api_view(['PUT'])
 def Update(request, pk):
     try:
         restaurante = Restaurantes.objects.get(id_restaurante=pk)
@@ -46,8 +57,18 @@ def Update(request, pk):
     serializer = RestaurantesSerializers(instance= restaurante, data=request.data, partial=True)
     if serializer.is_valid():
         serializer.save()
-        return Response({'message': 'Atualizado com Sucesso!'}, status=status.HTTP_200_OK)  # Código de resposta 200 para sucesso
+        return Response({'message': 'Atualizado com Sucesso!'}, status=status.HTTP_200_OK)
     
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['DELETE'])
+def Delete(request, pk):
+    try:
+        restaurante = Restaurantes.objects.get(id_restaurante=pk)
+    except Restaurantes.DoesNotExist:
+        return Response({'error': 'Restaurante não encontrado'}, status=status.HTTP_404_NOT_FOUND)
+    
+    restaurante.delete()
+    return Response({'message': 'Deletado com Sucesso'}, status=status.HTTP_200_OK)
 
             

@@ -18,25 +18,24 @@ from django.contrib import admin
 from django.urls import path, include
 
 from rest_framework import routers
-from restaurantes.api import viewsets as restaurantes
 from voluntarios.api import viewsets as voluntarios
 from campanha.api import viewsets as campanhas
 from transacao.api import viewsets as transacoes
 
-from restaurantes.views import List, Find_By_Id, Create, Update
+from restaurantes.views import Overview, List, Find_By_Id, Create, Update, Delete
 
 route = routers.DefaultRouter()
-
-route.register('restaurantes', restaurantes.RestauranteViewSet, basename='Restaurantes')
 route.register('voluntarios', voluntarios.VoluntariosViewSet, basename='Voluntarios')
 route.register('campanhas', campanhas.CampanhaViewSet, basename='Campanhas')
 route.register('transacoes', transacoes.TransacaoViewSet, basename='Transacoes')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('restaurantes/', Overview),
     path('restaurantes/list/<str:pk>', Find_By_Id),
     path('restaurantes/list/', List),
     path('restaurantes/create/', Create),
     path('restaurantes/update/<str:pk>', Update),
+    path('restaurantes/delete/<str:pk>', Delete),
     path('', include(route.urls)),
 ]
