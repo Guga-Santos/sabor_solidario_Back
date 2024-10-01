@@ -3,5 +3,5 @@ from voluntarios.api import serializers
 from voluntarios import models
 
 class VoluntariosViewSet(viewsets.ModelViewSet):
-    serializer_class = serializers.VoluntariosSerializers
+    serializer_class = serializers.VoluntariosSerializer
     queryset = models.Voluntarios.objects.all()
