@@ -19,7 +19,10 @@ def List(request):
 
 @api_view(['GET'])
 def Find_By_Id(request, pk):
-    restaurante = Restaurantes.objects.get(id_restaurante=pk)
+    try:
+        restaurante = Restaurantes.objects.get(id_restaurante=pk)
+    except Restaurantes.DoesNotExist:
+        return Response({'error': 'Restaurante não encontrado'}, status=status.HTTP_404_NOT_FOUND)
     serializer = RestaurantesSerializers(restaurante, many=False)
     return Response(serializer.data)
    
