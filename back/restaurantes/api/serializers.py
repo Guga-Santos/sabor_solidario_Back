@@ -14,26 +14,32 @@ class RestaurantesSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = Restaurantes
-        fields = ['id_restaurante', 'nome', 'nome_fantasia', 'CNPJ', 'telefone', 'email', 'senha', 'endereco']  # Inclua "endereco" nos fields
+        fields = ['id_restaurante', 'nome', 'nome_fantasia', 'CNPJ', 'telefone', 'email', 'senha', 'endereco']
 
     def create(self, validated_data):
-        # Extrair os dados do endereço
-        endereco_data = validated_data.pop('endereco')
+        endereco_data = validated_data.pop('endereco', None)
+        
+        if not endereco_data:
+            raise serializers.ValidationError({"endereco": "O campo endereço é obrigatório."})
+        
         # Criar o objeto endereço primeiro
-        endereco = Endereco.objects.create(**endereco_data)
+        endereco_serializer = EnderecoSerializer(data=endereco_data)
+        endereco_serializer.is_valid(raise_exception=True)
+        endereco = endereco_serializer.save()
+
         # Criar o objeto restaurante com o endereço
         restaurante = Restaurantes.objects.create(endereco=endereco, **validated_data)
         return restaurante
 
     def update(self, instance, validated_data):
         # Atualizar os dados do endereço
-        endereco_data = validated_data.pop('endereco')
+        endereco_data = validated_data.pop('endereco', None)
         endereco = instance.endereco
 
-        # Atualiza os campos do endereço
-        for attr, value in endereco_data.items():
-            setattr(endereco, attr, value)
-        endereco.save()
+        if endereco_data:
+            endereco_serializer = EnderecoSerializer(instance=endereco, data=endereco_data)
+            endereco_serializer.is_valid(raise_exception=True)
+            endereco_serializer.save()
 
         # Atualizar os outros campos do restaurante
         for attr, value in validated_data.items():
