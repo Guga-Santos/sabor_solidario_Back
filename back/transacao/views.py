@@ -12,11 +12,11 @@ from transacao.api.serializers import TransacaoSerializer
 @api_view(['GET'])
 def Overview(request):
     urls = {
-        'Find_By_Id':'transacoes/list/<str:pk>',
-        'List':'transacoes/list/',
-        'Create':'transacoes/create/',
-        'Update':'transacoes/update/<str:pk>',
-        'Delete':'transacoes/delete/<str:pk>'
+        'Find_By_Id':'http://localhost:8000/transacoes/list/<str:pk>',
+        'List':'http://localhost:8000/transacoes/list/',
+        'Create':'http://localhost:8000/transacoes/create/',
+        'Update':'http://localhost:8000/transacoes/update/<str:pk>',
+        'Delete':'http://localhost:8000/transacoes/delete/<str:pk>'
     }
 
     return Response(urls)

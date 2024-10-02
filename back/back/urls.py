@@ -20,7 +20,7 @@ from django.urls import path, include
 from rest_framework import routers
 from transacao.api import viewsets as transacoes
 
-from restaurantes import views as restaurante
+from restaurantes.api.routes import RestauranteRoutes
 from voluntarios import views as voluntario
 from campanha import views as campanha
 from transacao import views as transacao
@@ -30,12 +30,7 @@ route.register('transacoes', transacoes.TransacaoViewSet, basename='Transacoes')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('restaurantes/', restaurante.Overview),
-    path('restaurantes/list/<str:pk>', restaurante.Find_By_Id),
-    path('restaurantes/list/', restaurante.List),
-    path('restaurantes/create/', restaurante.Create),
-    path('restaurantes/update/<str:pk>', restaurante.Update),
-    path('restaurantes/delete/<str:pk>', restaurante.Delete),
+    path('restaurantes/', include(RestauranteRoutes())),
     path('voluntarios/', voluntario.Overview),
     path('voluntarios/list/<str:pk>', voluntario.Find_By_Id),
     path('voluntarios/list/', voluntario.List),
