@@ -28,4 +28,5 @@ urlpatterns = [
     path('voluntarios/', include(VoluntariosRoutes())),
     path('campanhas/', include(CampanhasRoutes())),
     path('transacoes/', include(TransacoesRoutes())),
+    path('api/', include(route.urls)),
 ]
