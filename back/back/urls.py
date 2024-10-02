@@ -22,7 +22,7 @@ from transacao.api import viewsets as transacoes
 
 from restaurantes.api.routes import RestauranteRoutes
 from voluntarios.api.routes import VoluntariosRoutes
-from campanha import views as campanha
+from campanha.api.routes import CampanhasRoutes
 from transacao import views as transacao
 
 route = routers.DefaultRouter()
@@ -32,12 +32,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('restaurantes/', include(RestauranteRoutes())),
     path('voluntarios/', include(VoluntariosRoutes())),
-    path('campanhas/', campanha.Overview),
-    path('campanhas/list/<str:pk>', campanha.Find_By_Id),
-    path('campanhas/list/', campanha.List),
-    path('campanhas/create/', campanha.Create),
-    path('campanhas/update/<str:pk>', campanha.Update),
-    path('campanhas/delete/<str:pk>', campanha.Delete),
+    path('campanhas/', include(CampanhasRoutes())),
     path('transacoes/', transacao.Overview),
     path('transacoes/list/<str:pk>', transacao.Find_By_Id),
     path('transacoes/list/', transacao.List),
