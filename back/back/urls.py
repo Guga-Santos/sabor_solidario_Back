@@ -18,13 +18,12 @@ from django.contrib import admin
 from django.urls import path, include
 
 from rest_framework import routers
-from voluntarios.api import viewsets as voluntarios
-from campanha.api import viewsets as campanhas
 from transacao.api import viewsets as transacoes
 
 from restaurantes import views as restaurante
 from voluntarios import views as voluntario
 from campanha import views as campanha
+from transacao import views as transacao
 
 route = routers.DefaultRouter()
 route.register('transacoes', transacoes.TransacaoViewSet, basename='Transacoes')
@@ -49,5 +48,11 @@ urlpatterns = [
     path('campanhas/create/', campanha.Create),
     path('campanhas/update/<str:pk>', campanha.Update),
     path('campanhas/delete/<str:pk>', campanha.Delete),
+    path('transacoes/', transacao.Overview),
+    path('transacoes/list/<str:pk>', transacao.Find_By_Id),
+    path('transacoes/list/', transacao.List),
+    path('transacoes/create/', transacao.Create),
+    path('transacoes/update/<str:pk>', transacao.Update),
+    path('transacoes/delete/<str:pk>', transacao.Delete),
     path('', include(route.urls)),
 ]
