@@ -18,7 +18,7 @@ class Endereco(models.Model):
 
 class Restaurantes(models.Model):
     id_restaurante = models.UUIDField(primary_key=True, default=uuid4, editable=False)
-    nome = models.CharField(max_length=255)
+    razao_social = models.CharField(max_length=255)
     nome_fantasia = models.CharField(max_length=255)
     CNPJ = models.CharField(max_length=14)
     telefone = models.CharField(max_length=11)
