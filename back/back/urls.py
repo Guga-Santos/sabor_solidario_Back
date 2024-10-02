@@ -24,9 +24,9 @@ from transacao.api import viewsets as transacoes
 
 from restaurantes import views as restaurante
 from voluntarios import views as voluntario
+from campanha import views as campanha
 
 route = routers.DefaultRouter()
-route.register('campanhas', campanhas.CampanhaViewSet, basename='Campanhas')
 route.register('transacoes', transacoes.TransacaoViewSet, basename='Transacoes')
 
 urlpatterns = [
@@ -43,5 +43,11 @@ urlpatterns = [
     path('voluntarios/create/', voluntario.Create),
     path('voluntarios/update/<str:pk>', voluntario.Update),
     path('voluntarios/delete/<str:pk>', voluntario.Delete),
+    path('campanhas/', campanha.Overview),
+    path('campanhas/list/<str:pk>', campanha.Find_By_Id),
+    path('campanhas/list/', campanha.List),
+    path('campanhas/create/', campanha.Create),
+    path('campanhas/update/<str:pk>', campanha.Update),
+    path('campanhas/delete/<str:pk>', campanha.Delete),
     path('', include(route.urls)),
 ]
