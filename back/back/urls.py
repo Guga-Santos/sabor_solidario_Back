@@ -21,7 +21,7 @@ from rest_framework import routers
 from transacao.api import viewsets as transacoes
 
 from restaurantes.api.routes import RestauranteRoutes
-from voluntarios import views as voluntario
+from voluntarios.api.routes import VoluntariosRoutes
 from campanha import views as campanha
 from transacao import views as transacao
 
@@ -31,12 +31,7 @@ route.register('transacoes', transacoes.TransacaoViewSet, basename='Transacoes')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('restaurantes/', include(RestauranteRoutes())),
-    path('voluntarios/', voluntario.Overview),
-    path('voluntarios/list/<str:pk>', voluntario.Find_By_Id),
-    path('voluntarios/list/', voluntario.List),
-    path('voluntarios/create/', voluntario.Create),
-    path('voluntarios/update/<str:pk>', voluntario.Update),
-    path('voluntarios/delete/<str:pk>', voluntario.Delete),
+    path('voluntarios/', include(VoluntariosRoutes())),
     path('campanhas/', campanha.Overview),
     path('campanhas/list/<str:pk>', campanha.Find_By_Id),
     path('campanhas/list/', campanha.List),
