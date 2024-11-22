@@ -14,7 +14,7 @@ class RestaurantesSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = Restaurantes
-        fields = ['id_restaurante', 'nome', 'nome_fantasia', 'CNPJ', 'telefone', 'email', 'senha', 'endereco']
+        fields = ['id_restaurante', 'razao_social', 'nome_fantasia', 'CNPJ', 'telefone', 'email', 'senha', 'endereco']
 
     def create(self, validated_data):
         endereco_data = validated_data.pop('endereco', None)

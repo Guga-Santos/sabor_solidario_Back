@@ -33,4 +33,4 @@ class Restaurantes(models.Model):
         return check_password(raw_senha, self.senha)
     
     def __str__(self):
-        return self.nome
+        return self.nome_fantasia
