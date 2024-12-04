@@ -11,7 +11,7 @@ class Campanha(models.Model):
     descricao = models.TextField()
     data_inicio = models.DateField()
     data_fim = models.DateField()
-    quantidade = models.IntegerField()
+    horario = models.CharField(max_length=8)
     tipo = models.CharField(max_length=64)
     disponivel = models.BooleanField(default=True)
 

@@ -57,13 +57,13 @@ def Update(request, pk):
     if request.method == 'GET':
         serializer = CampanhaSerializer()
         return Response(serializer.data) 
-    elif request.method == 'POST':
+    elif request.method == 'PUT':
         try:
             campanha = Campanha.objects.get(id_campanha=pk)
+            serializer = CampanhaSerializer(instance=campanha, data=request.data, partial=True)
         except Campanha.DoesNotExist:
             return Response({'error': 'Campanha não encontrada'}, status=status.HTTP_404_NOT_FOUND)
         
-        serializer = CampanhaSerializer(instance= campanha, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response({'message': 'Atualizado com Sucesso!'}, status=status.HTTP_200_OK)
@@ -74,8 +74,8 @@ def Update(request, pk):
 def Delete(request, pk):
     try:
         campanha = Campanha.objects.get(id_campanha=pk)
+        campanha.delete()
+        return Response({'message': 'Deletado com Sucesso'}, status=status.HTTP_200_OK)
     except Campanha.DoesNotExist:
         return Response({'error': 'Campanha não encontrada'}, status=status.HTTP_404_NOT_FOUND)
     
-    campanha.delete()
-    return Response({'message': 'Deletado com Sucesso'}, status=status.HTTP_200_OK)

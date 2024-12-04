@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id_transacao', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
                 ('data_reserva', models.DateTimeField(auto_now_add=True)),
-                ('data_retirada', models.DateTimeField(blank=True, null=True)),
+                ('data_retirada', models.DateField(blank=True, null=True)),
                 ('status', models.CharField(choices=[('Pendente', 'Pendente'), ('Concluida', 'Concluída')], default='Pendente', max_length=20)),
                 ('campanha', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='transacoes', to='campanha.campanha')),
                 ('voluntario', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='transacoes', to='voluntarios.voluntarios')),

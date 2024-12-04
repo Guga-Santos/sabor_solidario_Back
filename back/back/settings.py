@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'voluntarios',
     'campanha',
     'transacao',
-    'corsheaders'
+    'corsheaders',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [

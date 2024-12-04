@@ -8,8 +8,8 @@ class Transacao(models.Model):
     id_transacao = models.UUIDField(primary_key=True, default=uuid4, editable=False)
     campanha = models.ForeignKey(Campanha, on_delete=models.CASCADE, related_name="transacoes")
     voluntario = models.ForeignKey(Voluntarios, on_delete=models.CASCADE, related_name="transacoes")
-    data_reserva = models.DateTimeField(auto_now_add=True)  # Quando o voluntário se inscreveu
-    data_retirada = models.DateTimeField(null=True, blank=True)  # Quando o alimento foi retirado
+    data_reserva = models.DateField(auto_now_add=True)  # Quando o voluntário se inscreveu
+    data_retirada = models.DateField(null=True, blank=True)  # Quando o alimento foi retirado
     status = models.CharField(
         max_length=20,
         choices=[('Pendente', 'Pendente'), ('Concluida', 'Concluída')],
@@ -19,7 +19,7 @@ class Transacao(models.Model):
     def finalizar_retirada(self):
         """Marca a transação como concluída"""
         self.status = 'Concluida'
-        self.data_retirada = timezone.now()
+        self.data_retirada = timezone.now().date()
         self.save()
 
     def __str__(self):
